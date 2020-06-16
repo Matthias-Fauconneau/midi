@@ -1,4 +1,4 @@
-#[allow(unreachable_code)] #[fehler::throws(anyhow::Error)] fn main() {
+fn main() -> alsa::Result<()> {
 	let midi = alsa::rawmidi::Rawmidi::new("hw:1,0", alsa::Direction::Capture, false)?;
 	let info = midi.info()?;
 	eprintln!("{} {} {} {:?} {} {}", midi.name()?, info.get_device(), info.get_subdevice(), info.get_stream(), info.get_subdevice_name()?, info.get_id()?);
@@ -10,6 +10,4 @@
 			e => panic!("{:?}", e),
 		}
 	}
-/*let sfz : Vec<sfz::Rule> = sfz::from_bytes(&std::fs::read("../piano/IvyAudio-PianoIn162-Close.sfz")?)?;
-    anyhow::bail!("{:?}", sfz);*/
 }
